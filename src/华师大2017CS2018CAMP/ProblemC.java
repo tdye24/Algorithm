@@ -15,8 +15,9 @@ public class ProblemC {
 			} else {
 				int A = cost[i-1] + x;
 				if(i%2 == 1) {
-					int E = cost[(int)(i/2)] + x + y;
-					cost[i] = min(A, E);
+					int E = cost[(i+1)/2] + x + y;
+					int F = cost[(i-1)/2] + x + y;
+					cost[i] = min(F, min(A, E));
 				} else {
 					int D = cost[(int)(i/2)] + y;
 					cost[i] = min(A, D);

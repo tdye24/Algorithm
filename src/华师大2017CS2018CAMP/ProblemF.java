@@ -4,34 +4,29 @@ import java.io.BufferedInputStream;
 import java.util.Arrays;
 import java.util.Scanner;
 public class ProblemF {
+	public static int INF = Integer.MAX_VALUE;
 	public static void statistic(int[] a, int i, int j) {
 		int sum = 0;
-		Arrays.sort(a, i, j);
-	
-		for(int t=i; t<j; t++) {
-			if(t+1 >= j) {
-				System.out.println(sum);
-				return ;
-			}
-			if(a[t] == a[t+1]) {
+		
+		int b[] = new int[j-i+2];
+		
+		for(int t=i-1; t<j; t++) {
+			b[t-i+1] = a[t];
+		}
+		
+		
+		b[j-i+1] = INF;
+		Arrays.sort(b, 0, j-i+2);
+		
+		int n = j-i+2;
+		for(int t=0; t<n-1; t++) {
+			if(b[t] == b[t+1]) {
 				sum ++;
-				if(t+2 >= j) {
-					System.out.println(sum);
-					return ;
-				}
-				if(a[t+1] == a[t+2]) {
+				if(b[t+1] == b[t+2]) {
 					sum --;
-					t += 3;
-					if(t >= j) {
-						System.out.println(sum);
-						return ;
-					}
-					while(a[t] == a[t-1]) {
-						if(t >= j) {
-							System.out.println(sum);
-							return ;
-						}
-						t++;
+					t += 2;
+					while(b[t] == b[t+1]) {
+						t ++;
 					}
 				} else {
 					t ++;
@@ -39,13 +34,15 @@ public class ProblemF {
 			}
 		}
 		
+		
+		
 		System.out.println(sum);
 		
 	}
 	
 	public static void solve(int N, int Q, int[] a, int[][] b) {
 		for(int i=0; i<Q; i++) {
-			statistic(a, b[i][0]-1, b[i][1]);
+			statistic(a, b[i][0], b[i][1]);
 		}
 	}
 	public static void main(String[] args) {
