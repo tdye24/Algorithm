@@ -2,7 +2,7 @@ package PAT;
 
 import java.util.*;
 import java.io.*;
-public class PAT1011 {
+public class P1011 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(new BufferedInputStream(System.in));
