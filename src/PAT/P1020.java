@@ -47,7 +47,7 @@ public class P1020 {
 			} else {
 				System.out.print(" " + root);
 			}
-			int id = findid(root);//3
+			int id = findid(root);
 			for(int i=current.left; i<current.right; i++) {
 				if(findid(postorder.get(i)) > id) {
 					flag = false;
