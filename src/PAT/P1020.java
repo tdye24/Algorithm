@@ -59,7 +59,7 @@ public class P1020 {
 				}
 			}
 			if(flag) {
-				//右子树为空
+				// 右子树为空
 				Tuple4 left = new Tuple4(current.left, current.right-1, current.low, current.up-1);//(0,2,0,2)
 				queue.offer(left);	
 			}
