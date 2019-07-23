@@ -13,7 +13,6 @@ public class HDU5616Reno {
 			dp[i] = false;
 		}
 	}
-	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(new BufferedInputStream(System.in));
 		int T = sc.nextInt();//²âÊÔÑùÀı
