@@ -39,7 +39,7 @@ k' = a - k
 $$
 
 $$
- f[i][j] = max(f[i-1][k'*v[i]+b]-k'w[i]+a*w[i])， a-c[i] <= k <= a
+f[i][j] = max(f[i-1][k'*v[i]+b]-k'w[i]+a*w[i])， a-c[i] <= k <= a
 $$
 
 - k'：第i类物品还有多少件未装进背包
