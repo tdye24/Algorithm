@@ -28,11 +28,11 @@ a = j/v[i],\quad b=j \% v[i]
 $$
 
 $$
-\therefore j = a * v[i] + b
+j = a * v[i] + b
 $$
 
 $$
-\therefore f[i][j] = max(f[i-1][(a-k)*v[i]+b]+k*w[i])
+f[i][j] = max(f[i-1][(a-k)*v[i]+b]+k*w[i])
 $$
 
 $$
@@ -40,7 +40,7 @@ let \quad k' = a - k
 $$
 
 $$
-\therefore f[i][j] = max(f[i-1][k'*v[i]+b]-k'w[i]+a*w[i])， \quad a-c[i] <= k <= a
+ f[i][j] = max(f[i-1][k'*v[i]+b]-k'w[i]+a*w[i])， \quad a-c[i] <= k <= a
 $$
 
 - k'：第i类物品还有多少件未装进背包
