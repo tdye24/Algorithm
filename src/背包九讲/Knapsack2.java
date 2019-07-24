@@ -2,7 +2,7 @@ package ±³°ü¾Å½²;
 
 import java.util.*;
 import java.io.*;
-public class CompleteKnapsack {
+public class Knapsack2 {
 	public static final int  MAX = 1024;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(new BufferedInputStream(System.in));

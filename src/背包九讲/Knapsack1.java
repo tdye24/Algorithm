@@ -3,7 +3,7 @@ package ±³°ü¾Å½²;
 import java.util.Scanner;
 import java.io.BufferedInputStream;
 
-public class Knapsack0_1 {
+public class Knapsack1 {
     
     public static void main(String[] args){
         Scanner sc = new Scanner(new BufferedInputStream(System.in));
