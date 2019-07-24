@@ -1,6 +1,5 @@
 # Algorithm
 
-
 Algorithm 算法设计与分析
 
 #### 一、动态规划
@@ -14,7 +13,7 @@ c[i]  =  min(s[i], \quad j/v[i])
 $$
 
 $$
-f[i][j] = max(f[i-1][j-k*v[i]]+k*w[i]) ，\quad 0<=k<=c[i]
+f[i][j] = max(f[i-1][j-k*v[i]]+k*w[i]) ，0<=k<=c[i]
 $$
 
 - v[i]：每件第i类物品的耗费
@@ -28,19 +27,19 @@ a = j/v[i],\quad b=j \% v[i]
 $$
 
 $$
-\therefore j = a * v[i] + b
+j = a * v[i] + b
 $$
 
 $$
-\therefore f[i][j] = max(f[i-1][(a-k)*v[i]+b]+k*w[i])
+f[i][j] = max(f[i-1][(a-k)*v[i]+b]+k*w[i])
 $$
 
 $$
-let \quad k' = a - k
+k' = a - k
 $$
 
 $$
-\therefore f[i][j] = max(f[i-1][k'*v[i]+b]-k'w[i]+a*w[i])， \quad a-c[i] <= k <= a
+ f[i][j] = max(f[i-1][k'*v[i]+b]-k'w[i]+a*w[i])， a-c[i] <= k <= a
 $$
 
 - k'：第i类物品还有多少件未装进背包
@@ -292,4 +291,18 @@ public class MatrixA {
 ```
 
 
+
+> 附录
+
+```java
+JAVA:(PC)
+Integer.MAX_VALUE = 2147483647
+Long.MAX_VALUE = 9223372036854775807   
+```
+
+```c++
+C++:(PC)
+int.MAX_VALUE:2.147483647E9 
+long long.MAX_VALUE: 9.223372036854776E18
+```
 
