@@ -14,8 +14,8 @@ c[i]  =  min(s[i], \quad j/v[i])
 $$
 
 $$
-f[i][j] = max(f[i-1][j-k*v[i]]+k*w[i]) ，\quad 0<=k<=c[i]v[i]：每件第i类物品的耗费
-$$
+f[i][j] = max(f[i-1][j-k*v[i]]+k*w[i]) ，\quad 0<=k<=c[i]
+$$ {Preferences - Themes - Enable MathJax}
 
 - v[i]：每件第i类物品的耗费
 - s[i]：第i类物品总数
