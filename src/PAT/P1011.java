@@ -26,6 +26,8 @@ public class P1011 {
 		
 		float res = (float) ( (value[0]*value[1]*value[2]*0.65-1)*2);
 		System.out.printf("%c %c %c %.2f\n", cc[0], cc[1], cc[2], res);
+		
+		sc.close();
 	}
 
 }

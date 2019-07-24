@@ -32,7 +32,7 @@ public class P1006 {
 		}
 		
 		System.out.println(ID[early] + " " + ID[late]);
-		
+		sc.close();
 		
 	}
 

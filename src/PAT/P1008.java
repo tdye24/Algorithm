@@ -23,6 +23,8 @@ public class P1008 {
 		}
 		sum += 5*N;
 		System.out.println(sum);
+		
+		sc.close();
 	}
 
 }

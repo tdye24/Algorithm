@@ -86,6 +86,8 @@ public class P1020 {
 		}
 		queue.add(new Tuple4(0, N-1, 0, N-1));
 		solve();
+		
+		sc.close();
 	}
 
 }

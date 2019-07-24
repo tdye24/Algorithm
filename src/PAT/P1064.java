@@ -74,6 +74,8 @@ public class P1064 {
 		Collections.sort(a);
 		queue.add(new Tuple(0, N-1));
 		solve();
+		
+		sc.close();
 	}
 
 }

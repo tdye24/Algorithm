@@ -53,6 +53,8 @@ public class P1007 {
 		}
 		int sum = MaxSubSum(0, N-1);
 		System.out.print(sum);
+		
+		sc.close();
 	}
 
 }

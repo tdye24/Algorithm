@@ -22,7 +22,7 @@ public class P1019 {
 				break;
 			}
 		}
-		System.out.println(flag ? "YES":"NO");
+		System.out.println(flag ? "Yes":"No");
 		while(!tempqueue.isEmpty()) {
 			if(tempqueue.size() == 1) {
 				System.out.print(tempqueue.pollLast());
@@ -30,5 +30,6 @@ public class P1019 {
 				System.out.print(tempqueue.pollLast() + " ");
 			}
 		}
+		sc.close();
 	}
 }

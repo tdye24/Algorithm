@@ -38,6 +38,7 @@ public class P1002 {
 			}
 			
 		}
+		sc.close();
 
 	}
 

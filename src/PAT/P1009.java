@@ -44,6 +44,8 @@ public class P1009 {
 			}
 			
 		}
+		
+		sc.close();
 
 	}
 

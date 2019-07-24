@@ -17,6 +17,8 @@ public class P1027 {
 		int num2 = sc.nextInt();
 		int num3 = sc.nextInt();
 		System.out.println("#" + solve(num1) + solve(num2) + solve(num3));
+		
+		sc.close();
 	}
 
 }

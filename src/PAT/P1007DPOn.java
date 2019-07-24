@@ -34,6 +34,8 @@ public class P1007DPOn {
 			System.out.println("0" + " " + a[0] + " " + a[N-1]);
 		else 
 			System.out.println(maxsum + " " + a[tempi] + " " + a[bestj]);
+		
+		sc.close();
 	}
 
 }

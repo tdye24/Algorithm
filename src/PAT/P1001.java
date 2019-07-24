@@ -45,6 +45,7 @@ public class P1001 {
 		int a = sc.nextInt();
 		int b = sc.nextInt();
 		solve(a+b);
+		sc.close();
 		
 	}
 

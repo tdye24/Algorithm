@@ -36,6 +36,8 @@ public class P1007On2 {
 		if(sum < 0)
 			sum = 0;
 		System.out.print(sum + " " + a[besti] + " " + a[bestj]);
+		
+		sc.close();
 	}
 
 }
