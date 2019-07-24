@@ -194,6 +194,54 @@ $$
 
 总结：假设天平左边放置所称物体。第一轮正选背包，相当于计算出所有砝码所能组成的重量集合。第二轮背包，假设第二轮背包中选用了第一轮背包中所用的砝码，则相当于该砝码不被使用；假设第二轮背包中选用了第一轮背包中没有使用的砝码，相当于该砝码仅放置在天平左边。
 
+**3.最大子段和**
+
+> 动态规划算法
+
+b[j]表示前j个元素的最大子段和，当b[j-1]>0时，b[j]=b[j-1]+a[j]，否则b[j]=a[j]。
+$$
+b[j]=max\{b[j-1]+a[j], a[j]\}
+$$
+
+> Code
+
+```java
+package PAT;
+
+import java.util.*;
+import java.io.*;
+
+public class P1007DPOn {
+	static int MAX = 100024;
+	static int N;
+	static int[] a = new int[MAX];
+	static int MaxSubSum() {
+		int bj = 0;
+		int bj_1 = 0;
+		for(int i=0; i<N; i++) {
+			if(bj_1>0) 
+				bj_1 += a[i];
+			else 
+				bj_1 = a[i];
+			if(bj_1 > bj) 
+				bj = bj_1;
+		}
+		return bj;
+	}
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(new BufferedInputStream(System.in));
+		N = sc.nextInt();
+		for(int i=0; i<N; i++) {
+			a[i] = sc.nextInt();
+		}
+		int sum = MaxSubSum();
+		System.out.print(sum);
+	}
+}
+```
+
+
+
 #### 二、贪心算法
 
 #### 三、递归
