@@ -9,7 +9,7 @@ class Stu {
 	int M;
 	int E;
 	int A;
-	int Arank;
+
 	public Stu(String ID, int C, int M, int E) {
 		this.ID = ID;
 		this.C = C;
