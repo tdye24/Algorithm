@@ -8,8 +8,8 @@ public class MaxSubArray {
 	static int N;
 	static int[] a = new int[MAX];
 	static int MaxSubSum() {
-		int bj = 0;
-		int bj_1 = 0;
+		int bj = -Integer.MAX_VALUE;
+		int bj_1 = -Integer.MAX_VALUE;
 		for(int i=0; i<N; i++) {
 			if(bj_1>0) 
 				bj_1 += a[i];
