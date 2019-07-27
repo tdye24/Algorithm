@@ -329,6 +329,94 @@ public class LongestPalindrome {
 }
 ```
 
+> 从右至左（保存较前的最长回文子串），从下而上更新矩阵，但是此时矩阵中存放的不是该子串的回文子串集合而是该子串是否为回文串，同时不断更新besti、bestj两个标识最长回文子串的左角标和右角标的变量。
+>
+
+b->a->b->a->d
+
+0->1->2->3->4
+
+> 初始化字符串长度为1和2的子串
+
+| 4    |      |      |      |      | T    |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| 3    |      |      |      | T    |      |
+| 2    |      |      | T    |      |      |
+| 1    |      | T    |      |      |      |
+| 0    | T    |      |      |      |      |
+|      | 0    | 1    | 2    | 3    | 4    |
+
+| 4    |      |      |      | F    | T    |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| 3    |      |      | F    | T    |      |
+| 2    |      | F    | T    |      |      |
+| 1    | F    | T    |      |      |      |
+| 0    | T    |      |      |      |      |
+|      | 0    | 1    | 2    | 3    | 4    |
+
+[^T]: True，是回文子串
+[^F]: False，非回文子串
+
+> 状态转换方程
+
+$$
+dp[i][j]=dp[i+1][j−1],S[i]==S[j]
+$$
+
+$$
+dp[i][j]=flase,S[i]!=S[j]
+$$
+
+```java
+package 动态规划;
+
+import java.util.*;
+import java.io.*;
+public class LongestPalindrome {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(new BufferedInputStream(System.in));
+		String s = sc.next();
+		sc.close();
+		int len = s.length();
+		if(len == 0)
+			System.out.print("");
+		boolean[][] DP = new boolean[len][len];
+		for(int i=0; i<len; i++) {
+			DP[i][i] = true;
+		}
+		int besti = 0;
+		int bestj = 0;
+		/*
+		 * 倒序是为了维护较前的最长回文串
+		 */
+		for(int i=len-2; i>=0; i--) {
+			if(s.charAt(i) == s.charAt(i+1)) {
+				DP[i][i+1] = true;
+				besti = i;
+				bestj = i+1;
+			}
+				
+		}
+		
+		for(int i=2; i<len; i++) {
+			for(int j=len-1; j-i>=0; j--) {
+				if(s.charAt(j-i) == s.charAt(j)) {
+					DP[j-i][j] = DP[j-i+1][j-1];
+					if(DP[j-i][j]) {
+						besti = j-i;
+						bestj = j;
+					}
+					
+				}
+					
+			}
+		}
+		System.out.print(s.substring(besti, bestj+1));
+	}
+}
+```
+
 
 
 #### 二、贪心算法
