@@ -18,6 +18,7 @@ public class P1040 {
 		/*
 		 * 倒序是为了维护较前的最长回文串
 		 */
+
 		for(int i=len-2; i>=0; i--) {
 			if(s.charAt(i) == s.charAt(i+1)) {
 				DP[i][i+1] = true;
