@@ -11,7 +11,9 @@ int c[MAXV]; //Áî´ÓÆğµãsµ½´ï¶¥µãuµÄ×îÉÙ»¨·ÑÎªc[u]£¬³õÊ¼»¯Ê±Ö»ÓĞc[s]=0¡¢ÆäÓàc[u]¾
 
 void Dijkstra(int s) { //sÎªÆğµã 
 	fill(d, d+MAXV, INF); //fillº¯Êı½«Õû¸ödÊı×é¸³ÖµÎªINF£¨É÷ÓÃmemset£©
+	fill(c, c+MAXV, INF);
 	d[s] = 0;
+	c[s] = 0;
 	for(int i=0; i<n; i++) { //Ñ­»·n´Î
 		int u = -1, MIN = INF; //uÊ¹d[u]×îĞ¡£¬MIN´æ·Å¸Ã×îĞ¡µÄd[u]
 		for(int j=0; j<n; j++) { //ÕÒµ½Î´·ÃÎÊµÄ¶¥µãÖĞd[]×îĞ¡µÄ

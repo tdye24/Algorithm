@@ -12,7 +12,9 @@ int w[MAXV]; //令从起点s到达u可以收集到的最大物资为w[u]，初始化时只有w[s]为weigh
 
 void Dijkstra(int s) { //s为起点 
 	fill(d, d+MAXV, INF); //fill函数将整个d数组赋值为INF（慎用memset）
+	memset(w, 0, sizeof(w));
 	d[s] = 0;
+	w[s] = weight[s];
 	for(int i=0; i<n; i++) { //循环n次
 		int u = -1, MIN = INF; //u使d[u]最小，MIN存放该最小的d[u]
 		for(int j=0; j<n; j++) { //找到未访问的顶点中d[]最小的
