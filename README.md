@@ -423,7 +423,7 @@ public class LongestPalindrome {
 
 #### 三、递归
 
-**1.求行列式的值****
+**1.求行列式的值**
 
 ```java
 import java.util.*;
@@ -468,7 +468,159 @@ public class MatrixA {
 }
 ```
 
+#### 四、图
 
+**1.DFS**
+
+```C++
+#include<bits/stdc++.h>
+using namespace std;
+const int MAXV = 1010;
+int n; //顶点数 
+vector<int> Adj[MAXV];
+bool vis[MAXV] = {false};
+void DFS(int u, int depth) {
+	vis[u] = true;
+	for(int i=0; i<Adj[u].size(); i++) {
+		int v = Adj[u][i];
+		if(vis[v] == false) {
+			DFS(v, depth+1);
+		}
+	} 
+}
+
+void DFSTravel() {
+	for(int u=0; u<n; u++) {
+		if(vis[u] == false) {
+			DFS(u, 1);
+		}
+	}
+} 
+```
+
+**2.BFS**
+
+```C++
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> Adj[MAXV]; //图G， Adj[u]存放从顶点u出发可以到达的所有顶点
+int n; //n为顶点数，MAXV为最大顶点数
+bool inq[MAXV] = {false}; //若顶点i曾入过队列，则inq[i]==true。初值为false
+
+void BFS(int u) { //遍历单个连通块 
+	queue<int> q; //定义队列q
+	q.push(u); //将初始点u入队
+	inq[u] = true; //设置u已被加入过队列
+	while(!q.empty()) { //只要队列非空 
+		int u = q.front(); //取出队首元素
+		printf("%d ", u); //访问u 
+		q.pop(); //将队首元素出队 
+		for(int i=0; i<Adj[u].size(); i++) { //枚举u出发能到达的所有顶点 
+			int v = Adj[u][i];
+			if(inq[v] == false) { //如果v未曾加入过队列 
+				q.push(v); //将v入队
+				inq[v] = true; //标记v以被加入过队列 
+			}
+		}
+		 
+	}	
+} 
+
+void BFSTravel() { //遍历图G 
+	for(int u=0; u<n; u++) { //枚举所有顶点 
+		if(inq[u] == false) { //如果u未曾加入过队列 
+			BFS(u); //遍历u所在的连通块 
+		} 
+	} 
+} 
+```
+
+**3.并查集**
+
+```C++
+#include<bits/stdc++.h>
+
+const int N = 110;
+int father[N]; //存放父亲节点 
+bool isRoot[N]; //记录每个节点是否作为每个集合的根节点 
+
+int findFather(int x) {
+	int a = x;
+	while(x !=father[x]) {
+		x = father[x];
+	}
+	
+	//路径压缩
+	while(a != father[a]) {
+		father[a] = x;
+		a = father[a];
+	} 
+	
+	return x;
+}
+
+void Union(int a, int b) {
+	int faA = findFather(a);
+	int faB = findFather(b);
+	
+	if(faA != faB) {
+		father[faA] = faB;
+	}
+}
+
+void init(int n) {
+	for(int i=1; i<=n; i++) {
+		father[i] = i;
+		isRoot[i] = false;
+	}
+}
+```
+
+**4.Dijkstra最短路径**
+
+```C++
+#include<bits/stdc++.h>
+using namespace std;
+const int MAXV = 1000;
+const int INF = 1000000000;
+struct Node {
+	int v; //v为边的目标顶点
+	int dis; //dis为边权 
+}; 
+vector<Node> Adj[MAXV]; //图G，Adj[u]存放从顶点u出发可以到达的所有顶点
+int n; //n为顶点数，图G使用邻接表实现，MAXV为最大顶点数
+int d[MAXV]; //起点到达各点的最短路径 
+bool vis[MAXV] = {false}; //标记数组，vis[i] == true表示已访问。初值均为false
+
+void Dijkstra(int s) { //s为起点 
+	fill(d, d+MAXV, INF); //fill函数将整个d数组赋值为INF（慎用memset）
+	for(int i=0; i<n; i++) { //循环n次
+		int u = -1, MIN = INF; //u使d[u]最小，MIN存放该最小的d[u]
+		for(int j=0; j<n; j++) { //找到未访问的顶点中d[]最小的
+			if(vis[j] == false && d[j] < MIN) {
+				u = j;
+				MIN = d[j];
+			}
+		} 
+		//找不到小于INF的d[u]，说明剩下的顶点和起点s不连通
+		if(u == -1)
+			return;
+			
+		vis[u] = true;
+		//只有下面这个for循环与邻接矩阵的写法不同
+		for(int j=0; j<Adj[u].size(); j++) {
+			int v = Adj[u][j].v; //通过邻接表直接获得u能到达的顶点v
+			if(vis[v] == false && d[u] + Adj[u][j].dis < d[v]) {
+				//如果v未访问&&以u为中介点可以使d[v]更优
+				d[v] = d[u] + Adj[u][j].dis; //优化d[v] 
+			} 
+		} 
+	}
+} 
+```
+
+![https://github.com/TDYe123/Algorithm/blob/2b3332705bc898cab2465cf51f1034b6b25791e7/imgs/220px-Dijkstra_Animation.gif]()
 
 > 附录
 
@@ -482,5 +634,16 @@ Long.MAX_VALUE = 9223372036854775807
 C++:(PC)
 int.MAX_VALUE:2.147483647E9 
 long long.MAX_VALUE: 9.223372036854776E18
+```
+
+```C++
+//无穷大
+const INF = 0x3f3f3f3f;
+int arr[];
+memset(arr, 0x3f, sizeof(arr));
+//无穷小
+const INF = 0xc0c0c0c0;
+int arr[];
+memset(arr, 0xc0, sizeof(arr));
 ```
 
