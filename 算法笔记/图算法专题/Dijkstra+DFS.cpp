@@ -49,7 +49,7 @@ void DFS(int v) { //v为当前访问节点
 		//计算tempPath上的value值
 		
 		//边权之和 
-		for(int i=tempPath.size()-1; i>=0; i--) { //逆序访问节点，循环条件为i>0
+		for(int i=tempPath.size()-1; i>0; i--) { //逆序访问节点，循环条件为i>0
 			//当前节点id，下一节点idNext
 			int id = tempPath[i], idNext = tempPath[i-1];
 			value += V[id][idNext]; //value增加边id->idNext的边权 	
