@@ -620,7 +620,7 @@ void Dijkstra(int s) { //s为起点
 } 
 ```
 
-![https://github.com/TDYe123/Algorithm/blob/2b3332705bc898cab2465cf51f1034b6b25791e7/imgs/220px-Dijkstra_Animation.gif]()
+![https://en.wikipedia.org/wiki/File:Dijkstra_Animation.gif]()
 
 > 附录
 
