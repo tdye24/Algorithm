@@ -43,13 +43,13 @@ int main() {
 				} 	 
 			} 
 		} else {
-			if(mp[id] > mp[num-1] && num == 10) 
+			if((mp[id]>mp[num-1]||(mp[id]==mp[num-1])&&id<rec[num-1])&& num == 10) 
 				rec[num-1] = id;
 			else if(num < 10) {
 				rec[num++] = id;
 			}
 			for(int j=num-1; j>=1; j--) {
-				if(mp[rec[j]] > mp[rec[j-1]] || (mp[rec[j]] == mp[rec[j-1]] && rec[j] < rec[j-1])) {
+				if(mp[rec[j]]>mp[rec[j-1]]||(mp[rec[j]]==mp[rec[j-1]]&&rec[j]<rec[j-1])) {
 					t = rec[j-1];
 					rec[j-1] = rec[j];
 					rec[j] = t;	
