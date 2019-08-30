@@ -13,7 +13,7 @@ int LIS() {
 		if(arr[i]>=d[len]) {
 			d[++len] = arr[i];
 		} else {
-			int j = lower_bound(d+1, d+1+len, arr[i]) - d;
+			int j = upper_bound(d+1, d+1+len, arr[i]) - d;
 			d[j] = arr[i];
 		}
 	} 
@@ -33,13 +33,5 @@ int main() {
 		if(id[data] != 0) 
 			arr[++k] = id[data];
 	}
-	int ans = 0;
-	for(int i = 1; i <= k; i++) {
-		dp[i] = 1;
-		for(int j = 1; j < i; j++)
-			if(arr[i] >= arr[j])
-				dp[i] = max(dp[i], dp[j] + 1);
-		ans = max(dp[i], ans);
-}
-	printf("%d\n", ans);
+	printf("%d\n", LIS());
 }
