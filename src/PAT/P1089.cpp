@@ -1,44 +1,40 @@
+/*
+*1098 Insert or Merge (25 分)
+*/
 #include<bits/stdc++.h>
 using namespace std;
-long long a, b, c, d;
-long long gcd(long long t1, long long t2) {
-	if(t1 < t2)
-		swap(t1, t2);
-	return t2 == 0 ? t1 : gcd(t2, t1 % t2);
-} 
-
-void func(long long m, long long n) {
-	if(m * n == 0) {
-		printf("%s", n == 0 ? "Inf" : "0");
-		return ;
-	}
-	
-	bool flag = (m < 0 && n > 0) || (m > 0 && n < 0);
-	m = abs(m); n = abs(n);
-	long long x = m / n;
-	printf("%s", flag ? "(-" : "");
-	if(x != 0)
-		printf("%lld", x);
-	if(m % n == 0) {
-		if(flag)
-			printf(")");
-		return;
-	}
-	
-	if(x != 0)
-		printf(" ");
-	m = m - x * n;
-	long long t = gcd(m, n);
-	m = m / t;
-	n = n / t;
-	printf("%lld/%lld%s", m, n, flag ? ")" : "");
-}
-
 int main() {
-	scanf("%lld/%lld %lld/%lld", &a, &b, &c, &d);
-	func(a, b);printf(" + ");func(c, d);printf(" = ");func(a * d + b * c, b * d);printf("\n");
-	func(a, b);printf(" - ");func(c, d);printf(" = ");func(a * d - b * c, b * d);printf("\n");
-	func(a, b);printf(" * ");func(c, d);printf(" = ");func(a * c, b * d);printf("\n");
-	func(a, b);printf(" / ");func(c, d);printf(" = ");func(a * d, b * c);printf("\n");
-	return 0;
+	int n, a[100], b[100], i, j;
+	cin >> n;
+	for(int i=0; i<n; i++) 
+		cin >> a[i];
+	for(int i=0; i<n; i++)
+		cin >> b[i];
+	for(i=0; i<n-1 && b[i] <= b[i+1]; i++); //分号很重要 
+	
+	for(j = i+1; a[j] == b[j] && j < n; j++); //分号很重要 
+	if(j == n) {
+		cout << "Insertion Sort" << endl;
+		sort(a, a+i+2); //i+2 个元素 
+	} else {
+		cout << "Merge Sort" << endl;
+		int k = 1, flag = 1;
+		while(flag) {
+			flag = 0;
+			//检查是是否排序到该种程度 
+			for(i=0; i<n; i++) {
+				if(a[i] != b[i])
+					flag = 1;
+			} 
+			k = k*2;
+			for(i=0; i<n/k; i++) 
+				sort(a+i*k, a+(i+1)*k);
+			sort(a+n/k*k, a+n); //尾部剩余的几个元素 
+		}
+	} 
+	for(j=0; j<n; j++) {
+		if(j != 0) 	printf(" ");
+		printf("%d", a[j]);
+	}
+	return 0; 
 }
