@@ -20,7 +20,6 @@ bign change(string str) { //将整数转化为bign
 
 bign sub(bign a, bign b) { //高精度a-b 
 	bign c;
-	int carry = 0; //carry是进位
 	for(int i=0; i<max(a.len, b.len); i++) {
 		if(a.d[i] < b.d[i]) { //如果不够减
 			a.d[i+1]--; //向高位借位
