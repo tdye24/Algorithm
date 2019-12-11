@@ -239,7 +239,7 @@ public class P1007DPOn {
 }
 ```
 
-**3.最长回文子串(longestPalindrome)**
+**4.最长回文子串(longestPalindrome)**
 
 > 输入：babad
 
@@ -417,7 +417,56 @@ public class LongestPalindrome {
 }
 ```
 
+##### 5.最长不下降序列
 
+##### 6.编辑距离
+
+> 给定两个单词 word1 和 word2，计算出将 word1 转换成 word2 所使用的最少操作数 。
+>
+> 你可以对一个单词进行如下三种操作：
+>
+> 插入一个字符
+> 删除一个字符
+> 替换一个字符
+>
+> 来源：力扣（LeetCode）
+> 链接：https://leetcode-cn.com/problems/edit-distance
+
+> 输入: word1 = "horse", word2 = "ros"
+> 输出: 3
+> 解释: 
+> horse -> rorse (将 'h' 替换为 'r')
+> rorse -> rose (删除 'r')
+> rose -> ros (删除 'e')
+
+> 递推公式：
+
+**D[i\][j]表示word1前i个字符组成的子串通过D[i\][j]次操作可以转化成word2前j个字符组成的子串**
+$$
+D[i][j] = D[i-1][j-1], word1[i] == word2[j]
+$$
+
+$$
+D[i][j] = min(D[i-1][j-1], D[i-1][j], D[i][j-1])+1,word1[i]!=word2[j]
+$$
+
+> 示例：
+
+word: h  o  r   s  e，r o s
+
+index:1  2  3  4   5,  1 2 3
+
+D[0:5\][0:3]如下：
+
+|  0   |  1   |  2   |  3   |
+| :--: | :--: | :--: | :--: |
+|  1   |  1   |  2   |  3   |
+|  2   |  2   |  1   |  2   |
+|  3   |  2   |  2   |  2   |
+|  4   |  3   |  3   |  2   |
+|  5   |  4   |  4   |  3   |
+
+答案即为D[5\][4] = 3
 
 #### 二、贪心算法
 
@@ -622,6 +671,57 @@ void Dijkstra(int s) { //s为起点
 
 ![D](https://github.com/TDYe123/Algorithm/blob/master/imgs/220px-Dijkstra_Animation.gif?raw=true)
 
+#### 五、树
+
+**1.线段树**
+
+为什么开四倍空间？
+
+设完全二叉树最高层叶子节点个数为n，树高为k，k = log2(n)向上取整<= log2(n) + 1
+
+树节点总数为2^(k+1)-1 = 4n-1
+
+#### 六、回溯法
+
+**1、回溯搜索的非递归思路**
+
+解空间：[a1, a2, a3, ..., an];
+
+x[k]为解空间的索引，0 <= x[k] < n为数组a的索引；
+
+a[x[0~n-1]]表示一组解
+
+//判断解空间中的a[x[k]]是否满足条件
+
+```C++
+bool CanbeUsed(int k) {
+    
+}
+```
+
+算法描述如下
+
+```C++
+k = 0;
+x[k] = -1;
+while(k >= 0) {
+    x[k] = x[k] + 1;
+    while(x[k] < n && !CanbeUesd(k)) { //遍历解空间，直到找到可用的元素
+        x[k] = x[k] + 1; 
+    }
+    if(x[k] > n-1) { //x[k]超出解空间a的索引范围
+        k = k - 1; //回溯
+    } else if(k == n-1) { //找到了n-1个元素
+        //输出一组解
+    } else {
+        k = k + 1;
+        x[k] = -1;
+    }
+}
+```
+
+
+
 > 附录
 
 ```java
@@ -645,5 +745,44 @@ memset(arr, 0x3f, sizeof(arr));
 const INF = 0xc0c0c0c0;
 int arr[];
 memset(arr, 0xc0, sizeof(arr));
+```
+
+> 输入整行字符串
+
+```C++
+//string类
+#include <iostream>
+#include <string>
+using namespace std;
+int main() {
+	string str;
+	getline(cin, str);
+	cout << str << endl;
+	return 0;
+}
+```
+
+```C++
+#include <iostream>
+using namespace std;
+ 
+int main() {
+	char str[30];
+	cin.get(str, 30);
+	cout << str << endl;
+	return 0;
+}
+```
+
+```C++
+#include <iostream>
+using namespace std;
+ 
+int main() {
+	char str[30];
+	cin.getline(str, 30);
+	cout << str << endl;
+	return 0;
+}
 ```
 
