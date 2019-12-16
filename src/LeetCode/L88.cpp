@@ -11,10 +11,23 @@ nums2 = [2,5,6],       n = 3
 #include<bits/stdc++.h>
 using namespace std;
 
+//void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+//	for(int i=m, j=0; i<m+n && j<n; i++, j++) 
+//		nums1[i] = nums2[j];
+//	sort(nums1.begin(), nums1.end());
+//}
+
 void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
-	for(int i=m, j=0; i<m+n && j<n; i++, j++) 
-		nums1[i] = nums2[j];
-	sort(nums1.begin(), nums1.end());
+	vector<int> copy;
+	for(int i = 0; i < m; i++) 
+		copy.push_back(nums1[i]);
+	int i = 0, j = 0, t = 0;
+	while(i < m && j < n) 
+		nums1[t++] = (copy[i] <= nums2[j]) ? copy[i++] : nums2[j++];	
+	while(i < m)
+		nums1[t++] = copy[i++];
+	while(j < n)
+		nums1[t++] = nums2[j++];	
 }
 
 int main() {
