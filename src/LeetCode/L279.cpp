@@ -10,6 +10,8 @@
 输出: 2
 解释: 13 = 4 + 9.
 */
+
+//dp[i] = MIN(dp[i], dp[i - j * j] + 1)，i表示当前数字，j*j表示平方数
 #include<bits/stdc++.h>
 using namespace std;
 
